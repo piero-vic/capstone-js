@@ -1,3 +1,54 @@
-p {
-    color: red;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Biryani:wght@200&display=swap');
+
+body {
+  font-family: 'Biryani', sans-serif;
+  font-weight: bold;
+}
+
+header {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#counter {
+  font-size: 20px;
+  margin: -55px 0 0 -100px;
+}
+
+.navbar {
+  margin-top: -50px;
+  margin-left: -140px;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #739d76;
+  font-family: 'Balsamiq Sans', cursive;
+  font-size: 19px;
+  margin-left: 20px;
+}
+
+.dropdown-item {
+  text-align: center;
+}
+
+.logo {
+  background-image: url(./img/logo-dog.png);
+  background-repeat: no-repeat;
+  height: 95px;
+  width: 90px;
+  background-size: contain;
+  border: 1px solid black;
+  border-radius: 50%
+}
