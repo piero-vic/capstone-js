@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Biryani:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Estonia&display=swap');
 
 body {
-  font-family: 'Biryani', sans-serif;
+  font-family: 'Estonia', cursive;
   font-weight: bold;
 }
 
@@ -34,9 +34,13 @@ header {
   align-items: center;
   justify-content: center;
   color: #739d76;
-  font-family: 'Balsamiq Sans', cursive;
-  font-size: 19px;
+  font-family: 'Estonia', cursive;
+  font-size: 30px;
   margin-left: 20px;
+}
+
+.nav-link:hover {
+  font-size: 50px;
 }
 
 .dropdown-item {
@@ -46,9 +50,16 @@ header {
 .logo {
   background-image: url(./img/logo-dog.png);
   background-repeat: no-repeat;
-  height: 95px;
+  height: 90px;
   width: 90px;
   background-size: contain;
   border: 1px solid black;
   border-radius: 50%
+}
+
+.logo:hover {
+  /* height: 120px;
+  width: 100px; */
+  /* background-repeat: repeat; */
+  background-size:cover;
 }
