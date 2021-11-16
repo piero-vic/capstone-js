@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Estonia&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Estonia', cursive;
+  font-weight: bold;
+}
+
+/* Header Section */
+header {
+  width: 100%;
+  padding: 20px 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 80px;
+  background-color: grey;
+}
+
+.navigation-bar {
+  display: flex;
+  align-content: flex-start;
+  gap: 40px;
+}
+
+.navigation-item {
+  font-size: 35px;
+  margin: 0;
+  font-family: 'Estonia', cursive;
+}
+
+.navbar {
+  margin-top: -50px;
+  margin-left: -140px;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #739d76;
+  font-family: 'Estonia', cursive;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.nav-link:hover {
+  font-size: 50px;
+}
+
+.dropdown-item {
+  text-align: center;
+}
+
+.logo {
+  background-image: url(./img/logo-dog.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  height: 80px;
+  width: 80px;
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.logo:hover {
+  background-size: cover;
+}
+
+/* Main Section */
+.main-section {
+  height: 80vh;
+}
+
+/* Footer Section */
+.footer {
+  background-color: grey;
+  padding: 20px 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.footer p {
+  font-family: 'Estonia', cursive;
+  font-size: 30px;
+  margin: 0;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer a:hover {
+  font-weight: bold;
+  color: black;
+}
