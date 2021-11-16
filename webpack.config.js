@@ -1,9 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: ['./src/index.js', './src/displayItems.js'],
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -13,6 +14,7 @@ module.exports = {
       template: './src/index.html',
       title: 'API-based webapp',
     }),
+    new Dotenv(),
   ],
   output: {
     filename: 'main.js',
