@@ -106,6 +106,9 @@ div {
   top: 0;
   left: 0;
   z-index: 100;
+  font-family: 'Estonia', cursive;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 #popup-container {
