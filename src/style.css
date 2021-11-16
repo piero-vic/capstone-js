@@ -12,17 +12,24 @@ body {
 /* Header Section */
 header {
   width: 100%;
-  padding: 20px;
+  padding: 20px 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  gap: 80px;
   background-color: grey;
 }
 
-#counter {
-  font-size: 20px;
-  margin: -55px 0 0 -100px;
+.navigation-bar {
+  display: flex;
+  align-content: flex-start;
+  gap: 40px;
+}
+
+.navigation-item {
+  font-size: 35px;
+  margin: 0;
+  font-family: 'Estonia', cursive;
 }
 
 .navbar {
@@ -76,7 +83,7 @@ header {
 /* Footer Section */
 .footer {
   background-color: grey;
-  padding: 20px;
+  padding: 20px 80px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -88,7 +95,13 @@ header {
   margin: 0;
 }
 
-span {
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer a:hover {
+  font-weight: bold;
   color: black;
 }
 
