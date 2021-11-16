@@ -85,7 +85,6 @@ header {
 }
 
 .main-section-card {
-  max-height: 200px;
   font-family: 'Estonia', cursive;
   font-size: 20px;
   border: 1px solid black;
@@ -96,6 +95,18 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+}
+
+.card-image-container {
+  height: 200px;
+  display: grid;
+}
+
+.card-image {
+  max-width: 50%;
+  justify-self: center;
+  align-self: center;
+  border-radius: 10px;
 }
 
 .card-title {
