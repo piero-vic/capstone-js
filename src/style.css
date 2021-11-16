@@ -91,3 +91,109 @@ header {
 span {
   color: black;
 }
+
+/* Popup styling */
+article,
+div {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+#popup-article {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#popup-container {
+  background-color: white;
+  height: 90vh;
+  width: 70vw;
+  max-width: 650px;
+  margin: 5vh auto;
+  border: 1px lightgray solid;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.popup-scroll {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+#close-popup {
+  float: right;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.popup-image {
+  height: 300px;
+  max-width: 610px;
+  display: block;
+  margin: auto;
+}
+
+h2 {
+  margin: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+h3 {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.info-row {
+  padding: 8px 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-entry-label {
+  font-weight: bold;
+}
+
+#comments-list {
+  list-style: none;
+}
+
+.comment span {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+#new-comment {
+  width: 70%;
+  margin: auto;
+}
+
+#new-comment-name {
+  width: 100%;
+}
+
+#new-comment-content {
+  width: 100%;
+  height: 70px;
+}
+
+#new-comment-submit {
+  display: block;
+  margin: auto;
+  padding: 5px 10px;
+}
