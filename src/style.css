@@ -87,3 +87,7 @@ header {
   font-size: 30px;
   margin: 0;
 }
+
+span {
+  color: black;
+}
