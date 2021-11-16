@@ -17,7 +17,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: grey
+  background-color: grey;
 }
 
 #counter {
@@ -98,10 +98,6 @@ div {
   box-sizing: border-box;
 }
 
-p {
-  margin: 0;
-}
-
 #popup-article {
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
@@ -136,6 +132,10 @@ p {
   padding: 0;
   border: none;
   background: none;
+}
+
+#close-popup:hover {
+  color: red;
 }
 
 .popup-image {
