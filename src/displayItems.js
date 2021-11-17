@@ -1,3 +1,4 @@
+import { displayComments,postCommentsListener } from "./commentsPopup";
 const mainSection = document.getElementById('main-section');
 
 function createCard(dog) {
@@ -14,9 +15,25 @@ function createCard(dog) {
 
   mainSection.appendChild(card);
 
+  const popup = document.querySelector('.d-none')
+  const closePopup = document.getElementById('close-popup')
+  
+  const openPopup = () => {
+  //   createCard(dog);
+  //   displayComments(dog, popup);
+  // const form = popup.querySelector('#new-comment');
+  // form.addEventListener('submit',
+  //   postCommentsListener(dog,popup));
+  popup.classList.remove('d-none');
+  }
   const commentsButton = document.getElementById(`comments-button-${dog.id}`);
-  commentsButton.addEventListener('click', () => {
-    // Comments
+  commentsButton.addEventListener('click',  () => {
+    openPopup()
+  //   // Comments
+  }) 
+
+  closePopup.addEventListener('click', () => {
+    popup.classList.add('d-none')
   });
 
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
@@ -32,6 +49,7 @@ const getDogsData = async () => {
   });
   return response.json();
 };
+
 
 getDogsData().then((list) => {
   list.forEach((dog) => createCard(dog));
