@@ -1,47 +1,68 @@
-export const KEY_PREFIX = 'breedsInfo';
-export const API_KEY = '79fce215-15ef-4e33-b377-68e218319a6b';
+import { fetchComments, postComments } from './commentApiHandler';
 
-const popup = document.querySelector('.d-none')
-  // const closePopup = document.getElementById('close-popup')
-  
-export const displayBreedInfo = (container, info) => {
-  const imageContainer = container.querySelector('.card-image-container');
-  imageContainer.innerHTML = '';
-  // const breedImage = document.createElement('img');
-  const breedImage = document.querySelector('.class="card-image')
-  // breedImage.alt = dog.name;
-  // breedImage.src = dog.image.url;
-  breedImage.classList.add('popup-image');
-  imageContainer.appendChild(breedImage);
+ export const KEY_PREFIX = 'breedsInfo';
+ 
 
-  const breedName = document.querySelector('.card-title');
-  breedName.innerHTML = dog.name;
+// const commentsButton = document.getElementById(`comments-button-${dog.id}`);
 
-  const infoCategories = ['bred_for', 'breed_group', 'height', 'life_span',
-    'temperament'];
-  infoCategories.forEach((category) => {
-    const categoryDisplay = container.querySelector(`#popup-${category}`);
-    categoryDisplay.innerHTML = info[category];
-  });
+// const getComments = async () => {
+//   const url = 'https://api.thedogapi.com/v1/breeds?page=0&limit=9';
+//   const response = await fetch(url, {
+//     headers: { 'x-api-key': process.env.API_KEY },
+//   });
+//   return response.json();
+// };
+
+
+// getComments().then((list) => {
+//   list.forEach((dog) => commentsButton(dog));
+// });
+// export default getComments;
+
+
+
+
+
+
+
+
+
+const displayComment = (container, comment) => {
+  const commentDisplay = document.createElement('li');
+  commentDisplay.innerHTML = `
+    <span class="comment-date">${comment.creation_date}</span>
+    <span class="commenter">${comment.username}:</span>
+    <span class="comment-content">${comment.comment}</span>
+`;
+  container.appendChild(commentDisplay);
+};
+
+const displayCommentCounter = (container, comments) => {
+  const counterDisplay = container.querySelector('#comments-counter');
+  counterDisplay.innerHTML = `(${comments.length})`;
 };
 
 
+export const displayComments = async (breedId, popup) => {
+  let comments = await fetchComments(breedId);
+  const commentsContainer = popup.querySelector('#comments-list');
+  commentsContainer.innerHTML = '';
+  if (comments.error) comments = [];
+  displayCommentCounter(popup, comments);
+  Array.from(comments)
+    .forEach((comment) => { displayComment(commentsContainer, comment); });
+};
 
-
-export const closePopupListener = (popup) => (event) => {
+export const postCommentsListener = (breedId, commentButton, popup) => (event) => {
   event.preventDefault();
-  // removeListeners(popup.querySelector('#new-comment'));
-  popup.classList.add('d-none');
+  const username = popup.querySelector('#new-comment-name');
+  const content = popup.querySelector('#new-comment-content');
+  postComments(breedId, username.value, content.value)
+    .then(() => {
+      username.value = '';
+      content.value = '';
+      displayComments(breedId, popup);
+    });
 };
 
 
-const openPopupListener = (popup) => async (event) => {
-  event.preventDefault();
-  const breedId = document.getElementById('comments-button');
-  const storageKey = `${KEY_PREFIX}-${breedId}`;
-  const breedInfo = JSON.parse(localStorage.getItem(storageKey));
-  await displayBreedInfo(popup, breedInfo);
-  
-};
-
-export default openPopupListener;
