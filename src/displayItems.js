@@ -1,3 +1,5 @@
+import getLikes from './involvement';
+
 const mainSection = document.getElementById('main-section');
 
 function createCard(dog) {
