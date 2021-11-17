@@ -113,10 +113,6 @@ header {
   font-size: 40px;
 }
 
-.main-section-card p {
-  margin: 0;
-}
-
 .pop-image {
   width: 100%;
   height: 400px;
@@ -126,6 +122,14 @@ header {
 .pop-image:hover {
   background-size: contain;
   border: 5px solid salmon;
+}
+
+.like-button {
+  color: #e44c4c;
+}
+
+.like-button:hover {
+  color: #de2020;
 }
 
 .comments-button,
