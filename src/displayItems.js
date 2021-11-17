@@ -59,11 +59,11 @@ function createCard(dog) {
       item_id: dog.id,
     };
 
-    postLikes(body)
+    postLikes(body);
 
-    let counter = document.getElementById(`like-counter-${dog.id}`)
-    let likes = parseInt(counter.innerHTML.split(' ')[1])
-    counter.innerHTML = `Likes: ${likes+1}`
+    const counter = document.getElementById(`like-counter-${dog.id}`);
+    const likes = parseInt(counter.innerHTML.split(' ')[1], 10);
+    counter.innerHTML = `Likes: ${likes + 1}`;
   });
 }
 
