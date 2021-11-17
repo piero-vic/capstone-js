@@ -1,4 +1,4 @@
-import getLikes from './involvement';
+import { getDogsData, getLikes } from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -10,6 +10,7 @@ function createCard(dog) {
       <img class="card-image" src="${dog.image.url}" alt="">
     </div>
     <h3 class="card-title">${dog.name}</h3>
+    <p id="like-counter-${dog.id}">Likes: 0</p>
     <button id="comments-button-${dog.id}" class="comments-button">Comments</button>
     <button id="reservations-button-${dog.id}" class="reservations-button">Reservations</button>
   `;
@@ -47,14 +48,16 @@ function createCard(dog) {
   });
 }
 
-const getDogsData = async () => {
-  const url = 'https://api.thedogapi.com/v1/breeds?page=0&limit=9';
-  const response = await fetch(url, {
-    headers: { 'x-api-key': process.env.API_KEY },
-  });
-  return response.json();
-};
-
 getDogsData().then((list) => {
   list.forEach((dog) => createCard(dog));
+
+  getLikes().then((likes) => {
+    likes.forEach((item) => {
+      const counter = document.getElementById(`like-counter-${item.item_id}`);
+      if (counter) {
+        const likeCounter = `Likes: ${item.likes}`;
+        counter.innerHTML = likeCounter;
+      }
+    });
+  });
 });
