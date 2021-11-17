@@ -1,4 +1,4 @@
-import { getDogsData, getLikes } from './requests.js';
+import { getDogsData, getLikes, postLikes } from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -10,13 +10,11 @@ function createCard(dog) {
       <img class="card-image" src="${dog.image.url}" alt="">
     </div>
     <h3 class="card-title">${dog.name}</h3>
-    <div>
-      <span>
-        <i id="like-button-${dog.id}" class="fas fa-heart like-button"></i>
-      </span>
-      <span id="like-counter-${dog.id}">
+    <div class="like-container">
+      <i id="like-button-${dog.id}" class="fas fa-heart like-button"></i>
+      <p id="like-counter-${dog.id}">
         Likes: 0
-      </span>
+      </p>
     </div>
     <button id="comments-button-${dog.id}" class="comments-button">Comments</button>
     <button id="reservations-button-${dog.id}" class="reservations-button">Reservations</button>
@@ -52,6 +50,20 @@ function createCard(dog) {
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', () => {
     // Reservations
+  });
+
+  // Like Button
+  const likeButton = document.getElementById(`like-button-${dog.id}`);
+  likeButton.addEventListener('click', () => {
+    const body = {
+      item_id: dog.id,
+    };
+
+    postLikes(body)
+
+    let counter = document.getElementById(`like-counter-${dog.id}`)
+    let likes = parseInt(counter.innerHTML.split(' ')[1])
+    counter.innerHTML = `Likes: ${likes+1}`
   });
 }
 
