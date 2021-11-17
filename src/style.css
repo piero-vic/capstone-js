@@ -273,7 +273,7 @@ h3 {
 
 /* reservation popup */
 
-#new-reserve {
+#new-reserve{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -282,7 +282,7 @@ h3 {
 }
 
 .reserve-input,
-.reserve-button {
+.reserve-button{
   margin-top: 20px;
   font-size: 1.5rem;
   border: 1px solid #777;
@@ -290,7 +290,6 @@ h3 {
   padding: 10px 15px;
   width: 40%;
 }
-
 ::placeholder {
   font-style: italic;
   font-size: 1.5rem;
@@ -309,7 +308,7 @@ h3 {
   left: 50%;
   top: 1%;
   transform: translate(-50%, 1%);
-  border: 1px solid #999;
+  border: 1px solid #999999;
   z-index: 9;
   border-radius: 10px;
   font-family: 'Estonia', cursive;
@@ -325,7 +324,6 @@ h3 {
   height: 400px;
   border-radius: 10px;
 }
-
 .reservation-img-container {
   display: grid;
   grid-template-columns: auto auto;
