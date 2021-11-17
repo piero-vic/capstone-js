@@ -21,8 +21,6 @@ function createCard(dog) {
 
   const commentsButton = document.getElementById(`comments-button-${dog.id}`);
   commentsButton.addEventListener('click',  () => {
-    console.log(dog);
-    console.log(dog.bred_for);
     const popUpImage = document.getElementById('popup-image')
     popUpImage.innerHTML = `<img class="pop-image" src="${dog.image.url}" alt="">`
     const breadGroup = document.getElementById('popup-breed_group')
@@ -32,7 +30,7 @@ function createCard(dog) {
     const lifeSpan = document.getElementById('popup-life_span')
     lifeSpan.innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`
     const dogHeight  = document.getElementById('popup-height')
-    dogHeight.innerHTML = `<h3 class="card-title">${dog.height}</h3>`
+    dogHeight.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`
     const dogTemperament = document.getElementById('popup-temperament')
     dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`
     popup.classList.remove('d-none');
