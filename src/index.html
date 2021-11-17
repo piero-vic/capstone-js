@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/652f8ed312.js" crossorigin="anonymous"></script>
     <title>JS Capstone</title>
   </head>
   <body>
@@ -30,6 +31,46 @@
             <a href="https://github.com/Fondem-Jr">Fondem Junior</a>
           </p>
     </footer>
+
+    <div class="reservepopup">
+      <div class="reservation container" id="reservation-container">
+        <div class="reservation-img-container">
+          <div id="reservation-img">
+          </div>
+          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close" aria-hidden="true"></i></button></span>
+        </div>
+        <div class="features grid-container">
+          <div class="grid-item">
+            <p class="dog-features">Breed group: <span id="breed-group"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Bred for: <span id="bred"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Lifespan: <span id="lifespan"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Hight[cm]: <span id="hgt"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Temperament: <span id="temperament"></span></p>
+          </div>
+        </div>
+        <div class="reservation-list">
+          <h3>Reservation()</h3>
+          <ul></ul>
+        </div>
+        <div>
+          <h3>Add a reservation</h3>
+          <div id="new-reserve">
+            <input type="text" id="username" class="reserve-input"  placeholder="Your name">
+            <input type="text" id="start-date" class="reserve-input" placeholder="Start date">
+            <input type="text" class="reserve-input" id="end-date" placeholder="End date">
+            <button id="new-reserve-submit" class="reserve-button">Reserve</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
