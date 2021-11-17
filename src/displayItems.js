@@ -10,7 +10,14 @@ function createCard(dog) {
       <img class="card-image" src="${dog.image.url}" alt="">
     </div>
     <h3 class="card-title">${dog.name}</h3>
-    <p id="like-counter-${dog.id}">Likes: 0</p>
+    <div>
+      <span>
+        <i id="like-button-${dog.id}" class="fas fa-heart like-button"></i>
+      </span>
+      <span id="like-counter-${dog.id}">
+        Likes: 0
+      </span>
+    </div>
     <button id="comments-button-${dog.id}" class="comments-button">Comments</button>
     <button id="reservations-button-${dog.id}" class="reservations-button">Reservations</button>
   `;
