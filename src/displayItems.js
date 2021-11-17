@@ -14,9 +14,29 @@ function createCard(dog) {
 
   mainSection.appendChild(card);
 
+  const popup = document.getElementById('popup-article');
+  const closePopup = document.getElementById('close-popup');
+
   const commentsButton = document.getElementById(`comments-button-${dog.id}`);
   commentsButton.addEventListener('click', () => {
-    // Comments
+    const popUpImage = document.getElementById('popup-image');
+    popUpImage.innerHTML = `<img class="pop-image" src="${dog.image.url}" alt="">`;
+    const breadGroup = document.getElementById('popup-breed_group');
+    breadGroup.innerHTML = `<h3 class="card-title">${dog.breed_group}</h3>`;
+    const breadFor = document.getElementById('popup-bred_for');
+    breadFor.innerHTML = `<h3 class="card-title">${dog.bred_for}</h3>`;
+    const lifeSpan = document.getElementById('popup-life_span');
+    lifeSpan.innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`;
+    const dogHeight = document.getElementById('popup-height');
+    dogHeight.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
+    const dogTemperament = document.getElementById('popup-temperament');
+    dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
+    popup.classList.remove('d-none');
+  //   // Comments
+  });
+
+  closePopup.addEventListener('click', () => {
+    popup.classList.add('d-none');
   });
 
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
