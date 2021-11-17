@@ -62,7 +62,7 @@ getDogsData().then((list) => {
   });
 
   getComments().then((comments) => {
-    comments.forEach((item) => {
+    Array.from(comments).forEach((item) => {
       const counter = document.getElementById(`comments-counter-${item.item_id}`);
       if (counter) {
         const commentsCounter = `Comments: ${item.comments} `;
