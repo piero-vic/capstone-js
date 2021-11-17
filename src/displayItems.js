@@ -15,20 +15,27 @@ function createCard(dog) {
 
   mainSection.appendChild(card);
 
-  const popup = document.querySelector('.d-none')
+  const popup = document.getElementById('popup-article')
   const closePopup = document.getElementById('close-popup')
   
-  const openPopup = () => {
-  //   createCard(dog);
-  //   displayComments(dog, popup);
-  // const form = popup.querySelector('#new-comment');
-  // form.addEventListener('submit',
-  //   postCommentsListener(dog,popup));
-  popup.classList.remove('d-none');
-  }
+
   const commentsButton = document.getElementById(`comments-button-${dog.id}`);
   commentsButton.addEventListener('click',  () => {
-    openPopup()
+    console.log(dog);
+    console.log(dog.bred_for);
+    const popUpImage = document.getElementById('popup-image')
+    popUpImage.innerHTML = `<img class="pop-image" src="${dog.image.url}" alt="">`
+    const breadGroup = document.getElementById('popup-breed_group')
+    breadGroup.innerHTML = `<h3 class="card-title">${dog.breed_group}</h3>`
+    const breadFor = document.getElementById('popup-bred_for')
+    breadFor.innerHTML = `<h3 class="card-title">${dog.bred_for}</h3>`
+    const lifeSpan = document.getElementById('popup-life_span')
+    lifeSpan.innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`
+    const dogHeight  = document.getElementById('popup-height')
+    dogHeight.innerHTML = `<h3 class="card-title">${dog.height}</h3>`
+    const dogTemperament = document.getElementById('popup-temperament')
+    dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`
+    popup.classList.remove('d-none');
   //   // Comments
   }) 
 
