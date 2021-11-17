@@ -320,7 +320,7 @@ h3 {
   display: none;
 }
 
-.reservepopup{
+.reservepopup {
   background-color: white;
   height: 90vh;
   width: 70vw;
@@ -328,7 +328,6 @@ h3 {
   margin: 5vh auto;
   border: 1px lightgray solid;
   border-radius: 15px;
-  overflow: hidden;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -366,7 +365,7 @@ h3 {
   text-align: center;
 }
 
-#close-reserve-popup{
+#close-reserve-popup {
   border: none;
   background-color: white;
 }
