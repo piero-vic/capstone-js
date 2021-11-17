@@ -32,12 +32,12 @@
           </p>
     </footer>
 
-    <div class="reservepopup">
-      <div class="reservation container" id="reservation-container">
+    <div class="reservation" id="reservation-container">
+      <div class="reservepopup">
         <div class="reservation-img-container">
           <div id="reservation-img">
           </div>
-          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close" aria-hidden="true"></i></button></span>
+          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close closeButton" aria-hidden="true"></i></button></span>
         </div>
         <div class="features grid-container">
           <div class="grid-item">
@@ -64,8 +64,8 @@
           <h3>Add a reservation</h3>
           <div id="new-reserve">
             <input type="text" id="username" class="reserve-input"  placeholder="Your name">
-            <input type="text" id="start-date" class="reserve-input" placeholder="Start date">
-            <input type="text" class="reserve-input" id="end-date" placeholder="End date">
+            <input type="date" id="start-date" class="reserve-input" placeholder="Start date">
+            <input type="date" class="reserve-input" id="end-date" placeholder="End date">
             <button id="new-reserve-submit" class="reserve-button">Reserve</button>
           </div>
         </div>
