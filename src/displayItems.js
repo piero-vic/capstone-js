@@ -1,4 +1,4 @@
-import { getDogsData, getLikes } from './requests.js';
+import { getComments, getDogsData, getLikes } from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -60,4 +60,21 @@ getDogsData().then((list) => {
       }
     });
   });
+
+  getComments().then((container,comments) => {
+    comments.forEach((item) => {
+      const counterDisplay = container.getElementById(`comments-counter-${item.item_id}`);
+      counterDisplay.innerHTML = (`${comments.length}`);
+    });
+  });
+
+
+
+  // const displayCommentCounter = (container, comments) => {
+  //   const counterDisplay = container.querySelector('#comments-counter');
+  //   counterDisplay.innerHTML = `(${comments.length})`;
+  // };
+
 });
+
+
