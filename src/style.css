@@ -172,7 +172,7 @@ div {
   z-index: 100;
   font-family: 'Estonia', cursive;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #popup-container {
@@ -263,4 +263,11 @@ h3 {
   display: block;
   margin: auto;
   padding: 5px 10px;
+  width: 100px;
+  border-radius: 12px;
+}
+
+#new-comment-submit:hover {
+  background-color:rgb(73, 206, 73);
+  border-radius: 15px 10px;
 }
