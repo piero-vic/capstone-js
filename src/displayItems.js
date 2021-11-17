@@ -61,10 +61,13 @@ getDogsData().then((list) => {
     });
   });
 
-  getComments().then((container,comments) => {
+  getComments().then((comments) => {
     comments.forEach((item) => {
-      const counterDisplay = container.getElementById(`comments-counter-${item.item_id}`);
-      counterDisplay.innerHTML = (`${comments.length}`);
+      const counter = document.getElementById(`comments-counter-${item.item_id}`);
+      if (counter) {
+        const commentsCounter = `Comments: ${item.comments} `;
+        counter.innerHTML = commentsCounter;
+      }
     });
   });
 
