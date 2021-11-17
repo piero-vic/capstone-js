@@ -1,7 +1,6 @@
-import { fetchComments, postComments } from './commentApiHandler';
+import { fetchComments, postComments } from './commentApiHandler.js';
 
- export const KEY_PREFIX = 'breedsInfo';
- 
+export const KEY_PREFIX = 'breedsInfo';
 
 // const commentsButton = document.getElementById(`comments-button-${dog.id}`);
 
@@ -13,19 +12,10 @@ import { fetchComments, postComments } from './commentApiHandler';
 //   return response.json();
 // };
 
-
 // getComments().then((list) => {
 //   list.forEach((dog) => commentsButton(dog));
 // });
 // export default getComments;
-
-
-
-
-
-
-
-
 
 const displayComment = (container, comment) => {
   const commentDisplay = document.createElement('li');
@@ -41,7 +31,6 @@ const displayCommentCounter = (container, comments) => {
   const counterDisplay = container.querySelector('#comments-counter');
   counterDisplay.innerHTML = `(${comments.length})`;
 };
-
 
 export const displayComments = async (breedId, popup) => {
   let comments = await fetchComments(breedId);
@@ -64,5 +53,3 @@ export const postCommentsListener = (breedId, commentButton, popup) => (event) =
       displayComments(breedId, popup);
     });
 };
-
-
