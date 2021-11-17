@@ -12,4 +12,10 @@ const getLikes = async () => {
   return response.json();
 };
 
-export { getDogsData, getLikes };
+const getComments = async () => {
+  const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
+  const commentsResponse = await fetch(commentUrl);
+  return commentsResponse.json();
+};
+
+export { getDogsData, getLikes, getComments };
