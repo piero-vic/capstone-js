@@ -122,7 +122,6 @@ header {
 .pop-image:hover {
   background-size: contain;
   border: 5px solid salmon;
-  
 }
 
 .comments-button,
@@ -268,6 +267,6 @@ h3 {
 }
 
 #new-comment-submit:hover {
-  background-color:rgb(73, 206, 73);
+  background-color: rgb(73, 206, 73);
   border-radius: 15px 10px;
 }
