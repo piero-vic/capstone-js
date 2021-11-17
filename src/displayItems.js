@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-import { displayComments, postCommentsListener } from './commentsPopup.js';
-
 const mainSection = document.getElementById('main-section');
 
 function createCard(dog) {
