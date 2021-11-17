@@ -39,7 +39,9 @@ function createCard(dog) {
     popup.classList.add('d-none');
   });
 
-  // Reversation-popup page
+// Reversation-popup page
+
+  const popupReservation = document.getElementById('reservation-container');
 
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', () => {
