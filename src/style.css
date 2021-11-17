@@ -204,7 +204,8 @@ div {
   background: none;
 }
 
-#close-popup:hover {
+#close-popup:hover,
+.closeButton:hover {
   color: red;
 }
 

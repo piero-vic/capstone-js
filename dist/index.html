@@ -37,7 +37,7 @@
         <div class="reservation-img-container">
           <div id="reservation-img">
           </div>
-          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close closeButton" aria-hidden="true"></i></button></span>
+          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close closeButton fs-3" aria-hidden="true"></i></button></span>
         </div>
         <div class="features grid-container">
           <div class="grid-item">
@@ -64,8 +64,10 @@
           <h3>Add a reservation</h3>
           <div id="new-reserve">
             <input type="text" id="username" class="reserve-input"  placeholder="Your name">
-            <input type="date" id="start-date" class="reserve-input" placeholder="Start date">
-            <input type="date" class="reserve-input" id="end-date" placeholder="End date">
+            <input type="date" id="start-date" class="reserve-input">
+            <label for="start-date">Start Date</label>
+            <input type="date" class="reserve-input" id="end-date">
+            <label for="end-date">End Date</label>
             <button id="new-reserve-submit" class="reserve-button">Reserve</button>
           </div>
         </div>
