@@ -12,4 +12,27 @@ const getLikes = async () => {
   return response.json();
 };
 
-export { getDogsData, getLikes };
+const postLikes = async (body) => {
+  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/likes`;
+  await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+const getComments = async (id) => {
+  const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments?item_id=${id}`;
+  try {
+    const commentsResponse = await fetch(commentUrl);
+    return commentsResponse.json();
+  } catch (e) {
+    return [];
+  }
+};
+
+export {
+  getDogsData, getLikes, getComments, postLikes,
+};
