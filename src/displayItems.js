@@ -1,4 +1,6 @@
-import { getComments, getDogsData, getLikes, postLikes } from './requests.js';
+import {
+  getComments, getDogsData, getLikes, postLikes,
+} from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -12,9 +14,7 @@ function createCard(dog) {
     <h3 class="card-title">${dog.name}</h3>
     <div class="like-container">
       <i id="like-button-${dog.id}" class="fas fa-heart like-button"></i>
-      <p id="like-counter-${dog.id}">
-        Likes: 0
-      </p>
+      <p id="like-counter-${dog.id}">Likes: 0</p>
     </div>
     <button id="comments-button-${dog.id}" class="comments-button">Comments</button>
     <button id="reservations-button-${dog.id}" class="reservations-button">Reservations</button>
@@ -101,7 +101,7 @@ function createCard(dog) {
   const likeButton = document.getElementById(`like-button-${dog.id}`);
   likeButton.addEventListener('click', () => {
     const body = {
-      item_id: dog.id,
+      item_id: String(dog.id),
     };
 
     postLikes(body);
