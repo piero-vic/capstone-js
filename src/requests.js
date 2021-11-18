@@ -23,4 +23,14 @@ const postLikes = async (body) => {
   });
 };
 
-export { getDogsData, getLikes, postLikes };
+const getComments = async (id) => {
+  const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments?item_id=${id}`;
+  try {
+    const commentsResponse = await fetch(commentUrl);
+    return commentsResponse.json();
+  } catch (e) {
+    return [];
+  }
+};
+
+export { getDogsData, getLikes, getComments, postLikes };
