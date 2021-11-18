@@ -2,6 +2,8 @@ import {
   getComments, getDogsData, getLikes, postLikes,
 } from './requests.js';
 
+import dogCounter from './dogCounter.js';
+
 const mainSection = document.getElementById('main-section');
 
 function createCard(dog) {
@@ -113,6 +115,8 @@ function createCard(dog) {
 }
 
 getDogsData().then((list) => {
+  dogCounter(list);
+
   list.forEach((dog) => createCard(dog));
 
   getLikes().then((likes) => {
