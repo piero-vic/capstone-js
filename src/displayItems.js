@@ -1,4 +1,6 @@
-import { getDogsData, getLikes } from './requests.js';
+import {
+  getComments, getDogsData, getLikes,
+} from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -16,7 +18,7 @@ function createCard(dog) {
   `;
 
   mainSection.appendChild(card);
-
+  // Comments
   const popup = document.getElementById('popup-article');
   const closePopup = document.getElementById('close-popup');
 
@@ -35,7 +37,27 @@ function createCard(dog) {
     const dogTemperament = document.getElementById('popup-temperament');
     dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
     popup.classList.remove('d-none');
-  //   // Comments
+    const commentList = document.getElementById('comments-list');
+    commentList.innerHTML = '';
+    getComments(dog.id).then((comments) => {
+      if (comments.length > 0) {
+        comments.forEach((comment) => {
+          const commentList = document.getElementById('comments-list');
+          const commentDisplay = document.createElement('li');
+          commentDisplay.innerHTML = `
+          <span class="comment-date">${comment.creation_date}</span>
+          <span class="commenter">${comment.username}:</span>
+          <span class="comment-content">${comment.comment}</span>
+        `;
+          commentList.appendChild(commentDisplay);
+        });
+      } else {
+        const commentList = document.getElementById('comments-list');
+        const commentDisplay = document.createElement('li');
+        commentDisplay.innerHTML = 'No comment';
+        commentList.appendChild(commentDisplay);
+      }
+    });
   });
 
   closePopup.addEventListener('click', () => {
