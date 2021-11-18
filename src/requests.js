@@ -33,4 +33,6 @@ const getComments = async (id) => {
   }
 };
 
-export { getDogsData, getLikes, getComments, postLikes };
+export {
+  getDogsData, getLikes, getComments, postLikes,
+};
