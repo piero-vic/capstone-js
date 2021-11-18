@@ -31,6 +31,49 @@
             <a href="https://github.com/Fondem-Jr">Fondem Junior</a>
           </p>
     </footer>
+
+    <div class="reservation" id="reservation-container">
+      <div class="reservepopup">
+        <div class="reservation-img-container">
+          <div id="reservation-img">
+          </div>
+          <span class="close-reservation"><button id="close-reserve-popup"><i class="fa fa-window-close closeButton fs-3" aria-hidden="true"></i></button></span>
+        </div>
+        <div class="features grid-container">
+          <div class="grid-item">
+            <p class="dog-features">Breed group: <span id="breed-group"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Bred for: <span id="bred"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Lifespan: <span id="lifespan"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Hight[cm]: <span id="hgt"></span></p>
+          </div>
+          <div class="grid-item">
+            <p class="dog-features">Temperament: <span id="temperament"></span></p>
+          </div>
+        </div>
+        <div class="reservation-list">
+          <h3>Reservation()</h3>
+          <ul></ul>
+        </div>
+        <div>
+          <h3>Add a reservation</h3>
+          <div id="new-reserve">
+            <input type="text" id="username" class="reserve-input"  placeholder="Your name">
+            <input type="date" id="start-date" class="reserve-input">
+            <label for="start-date">Start Date</label>
+            <input type="date" class="reserve-input" id="end-date">
+            <label for="end-date">End Date</label>
+            <button id="new-reserve-submit" class="reserve-button">Reserve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="container">
         <ul class="list-container"></ul>
         <ul class="pagination"></ul>
@@ -86,5 +129,6 @@
         </div>
         </article>
     </section>
+
   </body>
 </html>
