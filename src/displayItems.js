@@ -47,9 +47,34 @@ function createCard(dog) {
     popup.classList.add('d-none');
   });
 
+  // Reversation-popup page
+
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', () => {
+    const popupReservationImage = document.getElementById('reservation-img');
+    popupReservationImage.innerHTML = `<img class="reserveImage" src="${dog.image.url}" alt="">`;
+    const breadGroup = document.getElementById('breed-group');
+    breadGroup.innerHTML = `<h3 class="card-title">${dog.breed_group}</h3>`;
+    const breadFor = document.getElementById('bred');
+    breadFor.innerHTML = `<h3 class="card-title">${dog.bred_for}</h3>`;
+    const lifeSpan = document.getElementById('lifespan');
+    lifeSpan.innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`;
+    const height = document.getElementById('hgt');
+    height.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
+    const temperament = document.getElementById('temperament');
+    temperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
+  });
+
+  // const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
+  reservationsButton.addEventListener('click', () => {
     // Reservations
+    document.getElementById('reservation-container').style.display = 'block';
+  });
+
+  const closeButton = document.getElementById('close-reserve-popup');
+  closeButton.addEventListener('click', () => {
+    // Reservations
+    document.getElementById('reservation-container').style.display = 'none';
   });
 
   // Like Button
