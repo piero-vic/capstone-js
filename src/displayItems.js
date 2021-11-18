@@ -1,5 +1,5 @@
 import {
-  getComments, getDogsData, getLikes, postLikes,
+  getComments, getDogsData, getLikes, postLikes,postComments
 } from './requests.js';
 
 const mainSection = document.getElementById('main-section');
@@ -62,6 +62,31 @@ function createCard(dog) {
       }
     });
   });
+
+  // const displayComments = async (id, popup) => {
+  //   let comments = await getComments(id);
+  //   const commentsContainer = document.querySelector('#comments-list');
+  //   commentsContainer.innerHTML = '';
+  //   if (comments.error) comments = [];
+  //   getComments(popup, comments);
+  //   Array.from(comments)
+  //     .forEach((comment) => { displayComment(commentsContainer, comment); });
+  // };
+  
+  
+  const commetsBtn = document.getElementById('new-comment-submit')
+  commetsBtn.addEventListener('click', (event) => {
+    
+    event.preventDefault();
+    const username = document.getElementById('new-comment-name');
+    const content = document.getElementById('new-comment-content');
+    postComments(dog.id, username.value, content.value)
+      .then(() => {
+        username.value = '';
+        content.value = '';
+        getComments();
+      });
+  })
 
   closePopup.addEventListener('click', () => {
     popup.classList.add('d-none');
