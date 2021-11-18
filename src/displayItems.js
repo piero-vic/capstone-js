@@ -36,19 +36,27 @@ function createCard(dog) {
     dogHeight.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
     const dogTemperament = document.getElementById('popup-temperament');
     dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
-
     popup.classList.remove('d-none');
+    const commentList = document.getElementById('comments-list');
+    commentList.innerHTML = '';
     getComments(dog.id).then((comments) => {
-      comments.forEach((comment) => {
+      if (comments.length > 0) {
+        comments.forEach((comment) => {
+          const commentList = document.getElementById('comments-list');
+          const commentDisplay = document.createElement('li');
+          commentDisplay.innerHTML = `
+          <span class="comment-date">${comment.creation_date}</span>
+          <span class="commenter">${comment.username}:</span>
+          <span class="comment-content">${comment.comment}</span>
+        `;
+          commentList.appendChild(commentDisplay);
+        });
+      } else {
         const commentList = document.getElementById('comments-list');
         const commentDisplay = document.createElement('li');
-        commentDisplay.innerHTML = `
-        <span class="comment-date">${comment.creation_date}</span>
-        <span class="commenter">${comment.username}:</span>
-        <span class="comment-content">${comment.comment}</span>
-      `;
+        commentDisplay.innerHTML = 'No comment';
         commentList.appendChild(commentDisplay);
-      });
+      }
     });
   });
 
@@ -71,16 +79,6 @@ getDogsData().then((list) => {
       if (counter) {
         const likeCounter = `Likes: ${item.likes}`;
         counter.innerHTML = likeCounter;
-      }
-    });
-  });
-
-  getComments().then((comments) => {
-    Array.from(comments).forEach((item) => {
-      const counter = document.getElementById(`comments-counter-${item.item_id}`);
-      if (counter) {
-        const commentsCounter = ` ${item.comments} `;
-        counter.innerHTML = commentsCounter;
       }
     });
   });
