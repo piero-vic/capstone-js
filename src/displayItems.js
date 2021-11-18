@@ -43,7 +43,7 @@ function createCard(dog) {
     const commentList = document.getElementById('comments-list');
     commentList.innerHTML = '';
     getComments(dog.id).then((comments) => {
-      if (comments.length > 0) {
+      if (comments) {
         comments.forEach((comment) => {
           const commentList = document.getElementById('comments-list');
           const commentDisplay = document.createElement('li');
@@ -63,29 +63,26 @@ function createCard(dog) {
     });
   });
 
-  // const displayComments = async (id, popup) => {
-  //   let comments = await getComments(id);
-  //   const commentsContainer = document.querySelector('#comments-list');
-  //   commentsContainer.innerHTML = '';
-  //   if (comments.error) comments = [];
-  //   getComments(popup, comments);
-  //   Array.from(comments)
-  //     .forEach((comment) => { displayComment(commentsContainer, comment); });
-  // };
+  
   
   
   const commetsBtn = document.getElementById('new-comment-submit')
+
   commetsBtn.addEventListener('click', (event) => {
-    
     event.preventDefault();
     const username = document.getElementById('new-comment-name');
     const content = document.getElementById('new-comment-content');
-    postComments(dog.id, username.value, content.value)
-      .then(() => {
+
+    const body = {
+      item_id: String(dog.id),
+      username: username.value,
+      comment: content.value,
+    }
+    postComments(body)
+    console.log(body);
+
         username.value = '';
         content.value = '';
-        getComments();
-      });
   })
 
   closePopup.addEventListener('click', () => {
