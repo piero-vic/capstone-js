@@ -39,14 +39,26 @@ const getComments = async (id) => {
 
 
 
+// const postComments = async (body) => {
+//   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
+//   await fetch(url, {
+//     method: 'POST',
+//     body: JSON.stringify(body),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+// };
+
 const postComments = async (body) => {
-  const request = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`, {
-    method: 'POST',
+  const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
+await fetch(url, {
+  method: 'POST',
     body: JSON.stringify(body),
-    headers: { 'Content-type': 'application/json' },
-  });
-  const response = await request.json();
-  return response;
+    headers: { 
+      'Content-type': 'application/json'
+     },
+})
 };
 
 export {
