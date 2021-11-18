@@ -1,4 +1,6 @@
-import { getComments, getDogsData, getLikes, postComments } from './requests.js';
+import {
+  getComments, getDogsData, getLikes,
+} from './requests.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -16,7 +18,7 @@ function createCard(dog) {
   `;
 
   mainSection.appendChild(card);
-
+  // Comments
   const popup = document.getElementById('popup-article');
   const closePopup = document.getElementById('close-popup');
 
@@ -34,8 +36,20 @@ function createCard(dog) {
     dogHeight.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
     const dogTemperament = document.getElementById('popup-temperament');
     dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
+
     popup.classList.remove('d-none');
-  //   // Comments
+    getComments(dog.id).then((comments) => {
+      comments.forEach((comment) => {
+        const commentList = document.getElementById('comments-list');
+        const commentDisplay = document.createElement('li');
+        commentDisplay.innerHTML = `
+        <span class="comment-date">${comment.creation_date}</span>
+        <span class="commenter">${comment.username}:</span>
+        <span class="comment-content">${comment.comment}</span>
+      `;
+        commentList.appendChild(commentDisplay);
+      });
+    });
   });
 
   closePopup.addEventListener('click', () => {
@@ -61,7 +75,7 @@ getDogsData().then((list) => {
     });
   });
 
-  getComments(1).then((comments) => {
+  getComments().then((comments) => {
     Array.from(comments).forEach((item) => {
       const counter = document.getElementById(`comments-counter-${item.item_id}`);
       if (counter) {
@@ -70,44 +84,4 @@ getDogsData().then((list) => {
       }
     });
   });
-
-
-  
-const displayComment = (container,comment) => {
-  console.log(container);
-  const commentDisplay = document.createElement('li');
-  commentDisplay.innerHTML = `
-    <span class="comment-date">${comment.creation_date}</span>
-    <span class="commenter">${comment.username}:</span>
-    <span class="comment-content">${comment.comment}</span>
-`;
-  container.appendChild(commentDisplay);
-};
-
-const displayComments = async (breedId, popup) => {
-  let comments = await getComments(breedId);
-  const commentsContainer = document.querySelector('#comments-list');
-  commentsContainer.innerHTML = '';
-  if (comments.error) comments = [];
-  getComments(popup, comments);
-  Array.from(comments)
-    .forEach((comment) => { displayComment(commentsContainer, comment); });
-};
-
-
-const commetsBtn = document.getElementById('new-comment-submit')
-commetsBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  const username = document.getElementById('new-comment-name');
-  const content = document.getElementById('new-comment-content');
-  postComments(username.value, content.value)
-    .then(() => {
-      username.value = '';
-      content.value = '';
-      displayComments();
-    });
-})
-  
 });
-
-
