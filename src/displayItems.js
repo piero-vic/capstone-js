@@ -136,20 +136,17 @@ getDogsData().then((list) => {
 async function renderReservations(id) {
   const reservations = await getReservations(id);
   let html = '';
-  reservations.forEach(reservation => {
-      const htmlSegment = `<div class="reservation-records"><b>${reservation.date_start}</b>--<b>${reservation.date_end}</b> by ${reservation.username}</div>`;
-      html += htmlSegment;
+  reservations.forEach((reservation) => {
+    const htmlSegment = `<div class="reservation-records"><b>${reservation.date_start}</b>--<b>${reservation.date_end}</b> by ${reservation.username}</div>`;
+    html += htmlSegment;
   });
 
   const container = document.querySelector('#listOfReservations');
   container.innerHTML = html;
 }
 
-const addReservationbtn = document.querySelector('.reserve-button');
 const reservationForm = document.getElementById('new-reserve');
-const reservationList = document.getElementById('listOfReservations');
 reservationForm.addEventListener('submit', (event) => {
-  console.log(event.target.id);
   event.preventDefault();
   submitReservation(activeDog, document.querySelector('#username').value, document.querySelector('#start-date').value, document.querySelector('#end-date').value);
   reservationForm.reset();

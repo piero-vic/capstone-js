@@ -69,5 +69,5 @@ const postComments = async (body) => {
 };
 
 export {
-  getDogsData, getLikes, getComments, postLikes, postComments, getReservations, submitReservation
+  getDogsData, getLikes, getComments, postLikes, postComments, getReservations, submitReservation,
 };
