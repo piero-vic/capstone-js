@@ -58,18 +58,18 @@
         </div>
         <div class="reservation-list">
           <h3>Reservation()</h3>
-          <ul></ul>
+          <ul id="listOfReservations"></ul>
         </div>
         <div>
           <h3>Add a reservation</h3>
-          <div id="new-reserve">
+          <form id="new-reserve">
             <input type="text" id="username" class="reserve-input"  placeholder="Your name">
             <input type="date" id="start-date" class="reserve-input">
             <label for="start-date">Start Date</label>
             <input type="date" class="reserve-input" id="end-date">
             <label for="end-date">End Date</label>
-            <button id="new-reserve-submit" class="reserve-button">Reserve</button>
-          </div>
+            <button id="new-reserve-submit" class="reserve-button" type="submit">Reserve</button>
+          </form>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
                 </div>
               </div>
               <div id="comments-container">
-                <h3>Comments <span id="comments-counter"></span></h3>
+                <h3>Comments: <span id="comments-counter"></span></h3>
                 <ul id="comments-list">
                 </ul>
               </div>
