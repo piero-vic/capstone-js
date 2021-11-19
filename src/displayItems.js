@@ -4,6 +4,7 @@ import {
 
 import dogCounter from './dogCounter.js';
 import commentsCounter from './commentCounter.js';
+import reservationCounter from './reservationCounter.js';
 
 const mainSection = document.getElementById('main-section');
 let activeDog = '';
@@ -140,7 +141,7 @@ async function renderReservations(id) {
     const htmlSegment = `<div class="reservation-records"><b>${reservation.date_start}</b>--<b>${reservation.date_end}</b> by ${reservation.username}</div>`;
     html += htmlSegment;
   });
-
+  reservationCounter(reservations);
   const container = document.querySelector('#listOfReservations');
   container.innerHTML = html;
 }
