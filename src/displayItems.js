@@ -4,10 +4,12 @@ import {
 
 const mainSection = document.getElementById('main-section');
 
+// Comments popup element
 const popup = document.getElementById('popup-article');
 const closePopup = document.getElementById('close-popup');
-const submitCommentButton = document.getElementById('new-comment-submit');
 const commentList = document.getElementById('comments-list');
+const submitCommentButton = document.getElementById('new-comment-submit');
+
 
 function createCard(dog) {
   const card = document.createElement('div');
@@ -91,22 +93,17 @@ getDogsData().then((list) => {
         if (comments.length > 0) {
           comments.forEach((comment) => {
             const commentDisplay = document.createElement('li');
-            commentDisplay.innerHTML = `
-            <span class="comment-date">${comment.creation_date}</span>
-            <span class="commenter">${comment.username}:</span>
-            <span class="comment-content">${comment.comment}</span>
-          `;
+            commentDisplay.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
             commentList.appendChild(commentDisplay);
           });
         } else {
-          const commentList = document.getElementById('comments-list');
           const commentDisplay = document.createElement('li');
-          commentDisplay.innerHTML = 'No comment';
+          commentDisplay.innerHTML = 'No comments';
           commentList.appendChild(commentDisplay);
         }
       });
-      submitCommentButton
       popup.classList.remove('d-none');
+      submitCommentButton.className = `comment-button ${dog.id}`
     });
   });
 
@@ -127,19 +124,18 @@ closePopup.addEventListener('click', () => {
 });
 
 submitCommentButton.addEventListener('click', (event) => {
+
   event.preventDefault();
   const username = document.getElementById('new-comment-name');
   const content = document.getElementById('new-comment-content');
 
   const body = {
-    item_id: String(),
+    item_id: submitCommentButton.classList[1],
     username: username.value,
     comment: content.value,
   };
 
   postComments(body);
-
-  console.log(body);
 
   username.value = '';
   content.value = '';
