@@ -9,8 +9,6 @@ const popup = document.getElementById('popup-article');
 const closePopup = document.getElementById('close-popup');
 const commentList = document.getElementById('comments-list');
 const submitCommentButton = document.getElementById('new-comment-submit');
-const reload = document.getElementById('reload-popup')
-
 
 function createCard(dog) {
   const card = document.createElement('div');
@@ -103,12 +101,9 @@ getDogsData().then((list) => {
           commentList.appendChild(commentDisplay);
         }
       });
-      // reload.addEventListener('click', () => {
-        
-      // })
-      
+
       popup.classList.remove('d-none');
-      submitCommentButton.className = `comment-button ${dog.id}`
+      submitCommentButton.className = `comment-button ${dog.id}`;
     });
   });
 
@@ -123,13 +118,12 @@ getDogsData().then((list) => {
     });
   });
 });
-closePopup.addEventListener('click', () =>{
-  popup.classList.add('d-none')
+closePopup.addEventListener('click', () => {
+  popup.classList.add('d-none');
 });
 submitCommentButton.addEventListener('click', (event) => {
-
   event.preventDefault();
-  const itemId = submitCommentButton.classList[1]
+  const itemId = submitCommentButton.classList[1];
   const username = document.getElementById('new-comment-name');
   const content = document.getElementById('new-comment-content');
 
@@ -141,16 +135,15 @@ submitCommentButton.addEventListener('click', (event) => {
 
   postComments(body).then(() => {
     getComments(itemId).then((commentsArray) => {
-      commentList.innerHTML = ''
+      commentList.innerHTML = '';
       commentsArray.forEach((comment) => {
         const commentDisplay = document.createElement('li');
         commentDisplay.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
         commentList.appendChild(commentDisplay);
       });
-    })
-  })
+    });
+  });
 
   username.value = '';
   content.value = '';
 });
-
