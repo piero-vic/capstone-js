@@ -1,7 +1,3 @@
-const headers = {
-  'Content-type': 'application/json',
-};
-
 const getDogsData = async () => {
   const url = 'https://api.thedogapi.com/v1/breeds?page=0&limit=9';
   const response = await fetch(url, {
@@ -37,30 +33,17 @@ const getComments = async (id) => {
   }
 };
 
-
-
-// const postComments = async (body) => {
-//   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
-//   await fetch(url, {
-//     method: 'POST',
-//     body: JSON.stringify(body),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-// };
-
 const postComments = async (body) => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
-await fetch(url, {
-  method: 'POST',
+  await fetch(url, {
+    method: 'POST',
     body: JSON.stringify(body),
-    headers: { 
-      'Content-type': 'application/json'
-     },
-})
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
 };
 
 export {
-  getDogsData, getLikes, getComments, postLikes,postComments
+  getDogsData, getLikes, getComments, postLikes, postComments,
 };
