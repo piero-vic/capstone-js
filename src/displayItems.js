@@ -2,6 +2,8 @@ import {
   getComments, getDogsData, getLikes, postLikes, postComments,
 } from './requests.js';
 
+import dogCounter from './dogCounter.js';
+
 const mainSection = document.getElementById('main-section');
 
 // Comments popup element
@@ -72,6 +74,7 @@ function createCard(dog) {
 
 // Render Homepage
 getDogsData().then((list) => {
+  dogCounter(list);
   // Create all cards
   list.forEach((dog) => {
     createCard(dog);
@@ -85,7 +88,6 @@ getDogsData().then((list) => {
       document.getElementById('popup-life_span').innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`;
       document.getElementById('popup-height').innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
       document.getElementById('popup-temperament').innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
-
       // Load comments
       commentList.innerHTML = '';
       getComments(dog.id).then((comments) => {
