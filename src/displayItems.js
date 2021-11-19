@@ -1,11 +1,12 @@
 import {
-  getComments, getDogsData, getLikes, postLikes, postComments,
+  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation, postComments,
 } from './requests.js';
 
 import dogCounter from './dogCounter.js';
 import commentsCounter from './commentCounter.js';
 
 const mainSection = document.getElementById('main-section');
+let activeDog = '';
 
 // Comments popup element
 const popup = document.getElementById('popup-article');
@@ -49,14 +50,23 @@ function createCard(dog) {
     temperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
   });
 
-  reservationsButton.addEventListener('click', () => {
+  // const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
+  reservationsButton.addEventListener('click', (event) => {
+    // Reservations
     document.getElementById('reservation-container').style.display = 'block';
+    const dogID = event.target.id.split('-');
+    /* eslint-disable */
+    activeDog = dogID[2];
+    renderReservations(activeDog);
+    /* eslint-enable */
   });
 
   const closeButton = document.getElementById('close-reserve-popup');
   closeButton.addEventListener('click', () => {
     document.getElementById('reservation-container').style.display = 'none';
   });
+
+  // getReservations(dog.id).then((reservations) => {
 
   // Like Button
   const likeButton = document.getElementById(`like-button-${dog.id}`);
@@ -121,6 +131,39 @@ getDogsData().then((list) => {
     });
   });
 });
+
+// Add reservation
+async function renderReservations(id) {
+  const reservations = await getReservations(id);
+  let html = '';
+  reservations.forEach((reservation) => {
+    const htmlSegment = `<div class="reservation-records"><b>${reservation.date_start}</b>--<b>${reservation.date_end}</b> by ${reservation.username}</div>`;
+    html += htmlSegment;
+  });
+
+  const container = document.querySelector('#listOfReservations');
+  container.innerHTML = html;
+}
+
+const reservationForm = document.getElementById('new-reserve');
+reservationForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  submitReservation(activeDog, document.querySelector('#username').value, document.querySelector('#start-date').value, document.querySelector('#end-date').value);
+  reservationForm.reset();
+  setTimeout(() => {
+    renderReservations(activeDog);
+  }, 1000);
+});
+
+// form.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   submitReservation(currentId, intName.value, intStartDate.value, intEndDate.value);
+//   form.reset();
+//   setTimeout(() => {
+//     recorsCont.innerHTML = '';
+//     displayReservation(currentId, recorsCont);
+//   }, 2000);
+// });
 closePopup.addEventListener('click', () => {
   popup.classList.add('d-none');
 });

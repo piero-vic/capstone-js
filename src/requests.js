@@ -33,6 +33,30 @@ const getComments = async (id) => {
   }
 };
 
+const getReservations = async (id) => {
+  const reservationUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/reservations?item_id=${id}`;
+  try {
+    const reservationsResponse = await fetch(reservationUrl);
+    return await reservationsResponse.json();
+  } catch (e) {
+    return [];
+  }
+};
+
+const submitReservation = async (id, name, dateStart, dateEnd) => {
+  fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/reservations/`,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        item_id: id,
+        username: name,
+        date_start: dateStart,
+        date_end: dateEnd,
+      }),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    });
+};
+
 const postComments = async (body) => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${process.env.INVOLVEMENT_ID}/comments`;
   await fetch(url, {
@@ -45,5 +69,5 @@ const postComments = async (body) => {
 };
 
 export {
-  getDogsData, getLikes, getComments, postLikes, postComments,
+  getDogsData, getLikes, getComments, postLikes, postComments, getReservations, submitReservation,
 };
