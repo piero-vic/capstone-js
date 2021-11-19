@@ -32,7 +32,6 @@ function createCard(dog) {
   `;
 
   mainSection.appendChild(card);
-  // END OF FUNTION
 
   // Reversation-popup page
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
@@ -51,9 +50,7 @@ function createCard(dog) {
     temperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
   });
 
-  // const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', (event) => {
-    // Reservations
     document.getElementById('reservation-container').style.display = 'block';
     const dogID = event.target.id.split('-');
     /* eslint-disable */
@@ -66,8 +63,6 @@ function createCard(dog) {
   closeButton.addEventListener('click', () => {
     document.getElementById('reservation-container').style.display = 'none';
   });
-
-  // getReservations(dog.id).then((reservations) => {
 
   // Like Button
   const likeButton = document.getElementById(`like-button-${dog.id}`);
@@ -156,18 +151,10 @@ reservationForm.addEventListener('submit', (event) => {
   }, 1000);
 });
 
-// form.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   submitReservation(currentId, intName.value, intStartDate.value, intEndDate.value);
-//   form.reset();
-//   setTimeout(() => {
-//     recorsCont.innerHTML = '';
-//     displayReservation(currentId, recorsCont);
-//   }, 2000);
-// });
 closePopup.addEventListener('click', () => {
   popup.classList.add('d-none');
 });
+
 submitCommentButton.addEventListener('click', (event) => {
   event.preventDefault();
   const itemId = submitCommentButton.classList[1];
