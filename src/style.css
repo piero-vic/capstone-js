@@ -223,18 +223,6 @@ div {
   color: red;
 }
 
-#reload-popup {
-  float: left;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
-#reload-popup:hover,
-.closeButton:hover {
-  color: green;
-}
-
 .popup-image {
   height: 300px;
   max-width: 610px;
