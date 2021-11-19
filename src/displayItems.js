@@ -3,6 +3,7 @@ import {
 } from './requests.js';
 
 import dogCounter from './dogCounter.js';
+import commentsCounter from './commentCounter.js';
 
 const mainSection = document.getElementById('main-section');
 
@@ -102,8 +103,8 @@ getDogsData().then((list) => {
           commentDisplay.innerHTML = 'No comments';
           commentList.appendChild(commentDisplay);
         }
+        commentsCounter(comments);
       });
-
       popup.classList.remove('d-none');
       submitCommentButton.className = `comment-button ${dog.id}`;
     });
@@ -143,6 +144,7 @@ submitCommentButton.addEventListener('click', (event) => {
         commentDisplay.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
         commentList.appendChild(commentDisplay);
       });
+      commentsCounter(commentsArray);
     });
   });
 
