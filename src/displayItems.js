@@ -1,9 +1,18 @@
 import {
-  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation
+  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation, postComments,
 } from './requests.js';
+
+import dogCounter from './dogCounter.js';
+import commentsCounter from './commentCounter.js';
 
 const mainSection = document.getElementById('main-section');
 let activeDog = '';
+
+// Comments popup element
+const popup = document.getElementById('popup-article');
+const closePopup = document.getElementById('close-popup');
+const commentList = document.getElementById('comments-list');
+const submitCommentButton = document.getElementById('new-comment-submit');
 
 function createCard(dog) {
   const card = document.createElement('div');
@@ -22,54 +31,9 @@ function createCard(dog) {
   `;
 
   mainSection.appendChild(card);
-  // Comments
-  const popup = document.getElementById('popup-article');
-  const closePopup = document.getElementById('close-popup');
-
-  const commentsButton = document.getElementById(`comments-button-${dog.id}`);
-  commentsButton.addEventListener('click', () => {
-    const popUpImage = document.getElementById('popup-image');
-    popUpImage.innerHTML = `<img class="pop-image" src="${dog.image.url}" alt="">`;
-    const breadGroup = document.getElementById('popup-breed_group');
-    breadGroup.innerHTML = `<h3 class="card-title">${dog.breed_group}</h3>`;
-    const breadFor = document.getElementById('popup-bred_for');
-    breadFor.innerHTML = `<h3 class="card-title">${dog.bred_for}</h3>`;
-    const lifeSpan = document.getElementById('popup-life_span');
-    lifeSpan.innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`;
-    const dogHeight = document.getElementById('popup-height');
-    dogHeight.innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
-    const dogTemperament = document.getElementById('popup-temperament');
-    dogTemperament.innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
-    popup.classList.remove('d-none');
-    const commentList = document.getElementById('comments-list');
-    commentList.innerHTML = '';
-    getComments(dog.id).then((comments) => {
-      if (comments.length > 0) {
-        comments.forEach((comment) => {
-          const commentList = document.getElementById('comments-list');
-          const commentDisplay = document.createElement('li');
-          commentDisplay.innerHTML = `
-          <span class="comment-date">${comment.creation_date}</span>
-          <span class="commenter">${comment.username}:</span>
-          <span class="comment-content">${comment.comment}</span>
-        `;
-          commentList.appendChild(commentDisplay);
-        });
-      } else {
-        const commentList = document.getElementById('comments-list');
-        const commentDisplay = document.createElement('li');
-        commentDisplay.innerHTML = 'No comment';
-        commentList.appendChild(commentDisplay);
-      }
-    });
-  });
-
-  closePopup.addEventListener('click', () => {
-    popup.classList.add('d-none');
-  });
+  // END OF FUNTION
 
   // Reversation-popup page
-  
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', () => {
     const popupReservationImage = document.getElementById('reservation-img');
@@ -99,7 +63,6 @@ function createCard(dog) {
 
   const closeButton = document.getElementById('close-reserve-popup');
   closeButton.addEventListener('click', () => {
-    // Reservations
     document.getElementById('reservation-container').style.display = 'none';
   });
 
@@ -120,9 +83,44 @@ function createCard(dog) {
   });
 }
 
+// Render Homepage
 getDogsData().then((list) => {
-  list.forEach((dog) => createCard(dog));
+  dogCounter(list);
+  // Create all cards
+  list.forEach((dog) => {
+    createCard(dog);
 
+    // Add event listener to comment buttons
+    const commentButton = document.getElementById(`comments-button-${dog.id}`);
+    commentButton.addEventListener('click', () => {
+      document.getElementById('popup-image').innerHTML = `<img class="pop-image" src="${dog.image.url}" alt="">`;
+      document.getElementById('popup-breed_group').innerHTML = `<h3 class="card-title">${dog.breed_group}</h3>`;
+      document.getElementById('popup-bred_for').innerHTML = `<h3 class="card-title">${dog.bred_for}</h3>`;
+      document.getElementById('popup-life_span').innerHTML = `<h3 class="card-title">${dog.life_span}</h3>`;
+      document.getElementById('popup-height').innerHTML = `<h3 class="card-title">${dog.height.metric}</h3>`;
+      document.getElementById('popup-temperament').innerHTML = `<h3 class="card-title">${dog.temperament}</h3>`;
+      // Load comments
+      commentList.innerHTML = '';
+      getComments(dog.id).then((comments) => {
+        if (comments.length > 0) {
+          comments.forEach((comment) => {
+            const commentDisplay = document.createElement('li');
+            commentDisplay.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+            commentList.appendChild(commentDisplay);
+          });
+        } else {
+          const commentDisplay = document.createElement('li');
+          commentDisplay.innerHTML = 'No comments';
+          commentList.appendChild(commentDisplay);
+        }
+        commentsCounter(comments);
+      });
+      popup.classList.remove('d-none');
+      submitCommentButton.className = `comment-button ${dog.id}`;
+    });
+  });
+
+  // Get likes for cards
   getLikes().then((likes) => {
     likes.forEach((item) => {
       const counter = document.getElementById(`like-counter-${item.item_id}`);
@@ -169,3 +167,33 @@ reservationForm.addEventListener('submit', (event) => {
 //     displayReservation(currentId, recorsCont);
 //   }, 2000);
 // });
+closePopup.addEventListener('click', () => {
+  popup.classList.add('d-none');
+});
+submitCommentButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  const itemId = submitCommentButton.classList[1];
+  const username = document.getElementById('new-comment-name');
+  const content = document.getElementById('new-comment-content');
+
+  const body = {
+    item_id: itemId,
+    username: username.value,
+    comment: content.value,
+  };
+
+  postComments(body).then(() => {
+    getComments(itemId).then((commentsArray) => {
+      commentList.innerHTML = '';
+      commentsArray.forEach((comment) => {
+        const commentDisplay = document.createElement('li');
+        commentDisplay.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+        commentList.appendChild(commentDisplay);
+      });
+      commentsCounter(commentsArray);
+    });
+  });
+
+  username.value = '';
+  content.value = '';
+});
