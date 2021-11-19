@@ -1,5 +1,5 @@
 import {
-  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation, postComments, 
+  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation, postComments,
 } from './requests.js';
 
 import dogCounter from './dogCounter.js';
