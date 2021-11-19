@@ -1,8 +1,9 @@
 import {
-  getComments, getDogsData, getLikes, postLikes,
+  getComments, getDogsData, getLikes, postLikes, getReservations, submitReservation
 } from './requests.js';
 
 const mainSection = document.getElementById('main-section');
+let activeDog = '';
 
 function createCard(dog) {
   const card = document.createElement('div');
@@ -68,7 +69,7 @@ function createCard(dog) {
   });
 
   // Reversation-popup page
-
+  
   const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
   reservationsButton.addEventListener('click', () => {
     const popupReservationImage = document.getElementById('reservation-img');
@@ -86,9 +87,14 @@ function createCard(dog) {
   });
 
   // const reservationsButton = document.getElementById(`reservations-button-${dog.id}`);
-  reservationsButton.addEventListener('click', () => {
+  reservationsButton.addEventListener('click', (event) => {
     // Reservations
     document.getElementById('reservation-container').style.display = 'block';
+    const dogID = event.target.id.split('-');
+    /* eslint-disable */
+    activeDog = dogID[2];
+    renderReservations(activeDog);
+    /* eslint-enable */
   });
 
   const closeButton = document.getElementById('close-reserve-popup');
@@ -96,6 +102,8 @@ function createCard(dog) {
     // Reservations
     document.getElementById('reservation-container').style.display = 'none';
   });
+
+  // getReservations(dog.id).then((reservations) => {
 
   // Like Button
   const likeButton = document.getElementById(`like-button-${dog.id}`);
@@ -125,3 +133,39 @@ getDogsData().then((list) => {
     });
   });
 });
+
+// Add reservation
+async function renderReservations(id) {
+  const reservations = await getReservations(id);
+  let html = '';
+  reservations.forEach(reservation => {
+      const htmlSegment = `<div class="reservation-records"><b>${reservation.date_start}</b>--<b>${reservation.date_end}</b> by ${reservation.username}</div>`;
+      html += htmlSegment;
+  });
+
+  const container = document.querySelector('#listOfReservations');
+  container.innerHTML = html;
+}
+
+const addReservationbtn = document.querySelector('.reserve-button');
+const reservationForm = document.getElementById('new-reserve');
+const reservationList = document.getElementById('listOfReservations');
+reservationForm.addEventListener('submit', (event) => {
+  console.log(event.target.id);
+  event.preventDefault();
+  submitReservation(activeDog, document.querySelector('#username').value, document.querySelector('#start-date').value, document.querySelector('#end-date').value);
+  reservationForm.reset();
+  setTimeout(() => {
+    renderReservations(activeDog);
+  }, 1000);
+});
+
+// form.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   submitReservation(currentId, intName.value, intStartDate.value, intEndDate.value);
+//   form.reset();
+//   setTimeout(() => {
+//     recorsCont.innerHTML = '';
+//     displayReservation(currentId, recorsCont);
+//   }, 2000);
+// });
