@@ -1,5 +1,5 @@
 const getDogsData = async () => {
-  const url = 'https://api.thedogapi.com/v1/breeds?page=0&limit=9';
+  const url = 'https://api.thedogapi.com/v1/breeds?page=0&limit=30';
   const response = await fetch(url, {
     headers: { 'x-api-key': process.env.API_KEY },
   });
